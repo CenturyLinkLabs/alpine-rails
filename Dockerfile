@@ -20,7 +20,7 @@ RUN gem install bundler --no-document && gem install nokogiri -- --use-system-li
 ONBUILD RUN mkdir /var/app
 ONBUILD COPY . /var/app
 ONBUILD WORKDIR /var/app
-ONBUILD RUN bundle install && rake db:setup
+ONBUILD RUN bundle install && rake db:create && rake db:migrate && rake db:seed
 
 EXPOSE 3000
 CMD ["rails", "server", "-b", "0.0.0.0"] 
