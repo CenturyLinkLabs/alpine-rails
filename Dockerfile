@@ -1,4 +1,4 @@
-FROM alpine 
+FROM alpine:3.2 
 
 MAINTAINER CenturyLink Labs <innovationslab@ctl.io>
 
@@ -8,11 +8,7 @@ ENV DEV_PACKAGES zlib-dev libgcrypt libxml2-dev libxslt-dev tzdata sqlite-dev no
 
 RUN echo 'gem: --no-document' >> /.gemrc
 
-RUN apk update && \
-    apk upgrade && \
-    apk add $BUILD_PACKAGES && \
-    apk add $RUBY_PACKAGES && \
-    apk add $DEV_PACKAGES && \
+RUN apk --update --upgrade add $BUILD_PACKAGES $RUBY_PACKAGES $DEV_PACKAGES && \
     rm -rf /var/cache/apk/*
 
 RUN gem install bundler --no-document 
