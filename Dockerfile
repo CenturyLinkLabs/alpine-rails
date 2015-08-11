@@ -8,6 +8,8 @@ ENV BUILD_PACKAGES="curl-dev ruby-dev build-base" \
 RUN \
   apk --update --upgrade add $BUILD_PACKAGES $RUBY_PACKAGES $DEV_PACKAGES && \
   gem install --no-document bundler && \
+  gem install nokogiri -- --use-system-libraries && \
+  gem install rails && \
   echo 'gem: --no-document' >> ~/.gemrc && \
   cp ~/.gemrc /etc/gemrc && \
   chmod uog+r /etc/gemrc && \
