@@ -7,10 +7,27 @@ ENV BUILD_PACKAGES="curl-dev ruby-dev build-base" \
     RUBY_PACKAGES="ruby ruby-io-console ruby-json yaml nodejs" \
     RAILS_VERSION="4.2.3"
 
-RUN \
-  apk --update --upgrade add $BUILD_PACKAGES $RUBY_PACKAGES $DEV_PACKAGES && \
-  gem install -N bundler
-  
+RUN apk update
+
+RUN apk add curl-dev
+RUN apk add ruby-dev
+RUN apk add build-base
+RUN apk add zlib-dev
+RUN apk add libxml2-dev
+RUN apk add libxslt-dev
+RUN apk add tzdata
+RUN apk add yaml-dev
+RUN apk add sqlite-dev
+RUN apk add postgresql-dev
+RUN apk add mysql-dev
+
+RUN apk add ruby
+RUN apk add ruby-io-console
+RUN apk add ruby-json
+RUN apk add yaml
+RUN apk add nodejs
+RUN gem install -N bundler
+
 RUN gem install -N nokogiri -- --use-system-libraries && \
   gem install -N rails --version "$RAILS_VERSION" && \
   echo 'gem: --no-document' >> ~/.gemrc && \
