@@ -22,7 +22,7 @@ RUN gem install -N nokogiri -- --use-system-libraries && \
   bundle config --global build.nokogumbo "--use-system-libraries" && \
   find / -type f -iname \*.apk-new -delete && \
   rm -rf /var/cache/apk/* && \
-  rm -rf /usr/lib/lib/ruby/gems/*/cache/* && \
+  rm -rf /usr/lib/ruby/gems/*/cache/* && \
   rm -rf ~/.gem
 
 EXPOSE 3000
